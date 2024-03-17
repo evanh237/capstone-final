@@ -1,7 +1,8 @@
 import "./ProductCard.css";
 import { useNavigate } from "react-router";
 
-const ProductCard = ({ product, isSingle }) => {
+const ProductCard = ({ product, isSingle, cart, setCart }) => {
+  console.log("cart-->", cart);
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/");
@@ -10,6 +11,22 @@ const ProductCard = ({ product, isSingle }) => {
   const handleDetails = () => {
     navigate(`${product.id}`);
   };
+
+  const handleAddToCart = () => {
+    const productId = product.id;
+    const existingCartItemIndex = cart.findIndex(
+      (item) => item.productId === productId
+    );
+    if (existingCartItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingCartItemIndex].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      const newItem = { productId, quantity: 1 };
+      setCart((prevCart) => [...prevCart, newItem]);
+    }
+  };
+
   return (
     <div className="card">
       <img src={product.image} alt={product.title} className="card-image" />
@@ -35,7 +52,9 @@ const ProductCard = ({ product, isSingle }) => {
         </button>
       )}
 
-      <button className="cart-button">Add to Cart</button>
+      <button onClick={handleAddToCart} className="cart-button">
+        Add to Cart
+      </button>
     </div>
   );
 };

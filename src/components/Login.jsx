@@ -1,9 +1,9 @@
-import { login } from "../api";
+import { login, getAllUsers, getUserCart } from "../api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setUser, setCart }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -19,6 +19,11 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await login(username, password);
+    const user = await getAllUsers(username);
+    const userCart = await getUserCart(user.id);
+    // console.log("user-->", user, "userscart-->", userCart);
+    setUser(user);
+    setCart(userCart);
     setToken(token);
     setPassword("");
     setUserName("");
