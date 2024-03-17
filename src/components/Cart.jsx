@@ -1,7 +1,11 @@
 import CartItemCard from "./CartItemCard";
+import { useEffect } from "react";
 
 const Cart = ({ cart, products, setCart }) => {
-  console.log("cart-->", cart, "products-->", products);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const getCartItemDetails = (cartItem) =>
     products.find((product) => product.id === cartItem.productId);
 

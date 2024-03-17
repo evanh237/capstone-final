@@ -6,6 +6,7 @@ import AllProducts from "./AllProducts";
 import { getAllProducts, getSingleProduct } from "../api";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
+import NavBar from "./Navbar";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -41,6 +42,7 @@ function App() {
 
   return (
     <div>
+      <NavBar token={token} setToken={setToken} cart={cart} setCart={setCart} />
       <Routes>
         <Route
           path="/"
