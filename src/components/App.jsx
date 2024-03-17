@@ -7,6 +7,7 @@ import { getAllProducts, getSingleProduct } from "../api";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
 import NavBar from "./Navbar";
+import Checkout from "./Checkout";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -63,6 +64,10 @@ function App() {
         <Route
           path="/cart"
           element={<Cart cart={cart} products={products} setCart={setCart} />}
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout cart={cart} products={products} />}
         />
       </Routes>
     </div>
