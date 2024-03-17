@@ -1,3 +1,5 @@
+import { useLoaderData } from "react-router";
+
 const BASEURL = "https://fakestoreapi.com";
 
 export const login = async (username, password) => {
@@ -42,5 +44,26 @@ export const getSingleProduct = async (id) => {
     return result;
   } catch (error) {
     console.error(`There was an error getting product ${id}`, error);
+  }
+};
+
+export const getAllUsers = async (username) => {
+  try {
+    const response = await fetch(`${BASEURL}/users`);
+    const result = await response.json();
+    const userData = result.find((user) => user.username === username);
+    return userData;
+  } catch (error) {
+    console.error("Error /GET all users", error);
+  }
+};
+
+export const getUserCart = async (id) => {
+  try {
+    const response = await fetch(`${BASEURL}/carts/${id}`);
+    const result = await response.json();
+    return result.products;
+  } catch (error) {
+    console.error("Error /GET user cart");
   }
 };

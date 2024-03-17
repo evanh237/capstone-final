@@ -1,0 +1,35 @@
+.cart-item-card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cart-item-image-container {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.cart-item-image {
+  width: 50px; /* Adjust the size of the image as needed */
+  height: 50px; /* Adjust the size of the image as needed */
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px;
+}
