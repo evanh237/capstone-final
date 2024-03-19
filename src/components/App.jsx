@@ -41,6 +41,10 @@ function App() {
     fetchAllProducts();
   }, []);
 
+  const resetCart = () => {
+    setCart([]);
+  };
+
   return (
     <div>
       <NavBar token={token} setToken={setToken} cart={cart} setCart={setCart} />
@@ -68,12 +72,24 @@ function App() {
         />
         <Route
           path="/cart"
-          element={<Cart cart={cart} products={products} setCart={setCart} />}
+          element={
+            <Cart
+              cart={cart}
+              products={products}
+              setCart={setCart}
+              resetCart={resetCart}
+            />
+          }
         />
         <Route
           path="/checkout"
           element={
-            <Checkout cart={cart} setCart={setCart} products={products} />
+            <Checkout
+              cart={cart}
+              setCart={setCart}
+              products={products}
+              resetCart={resetCart}
+            />
           }
         />
       </Routes>

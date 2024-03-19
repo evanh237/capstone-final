@@ -1,7 +1,7 @@
 import CartItemCard from "./CartItemCard";
 import { useEffect, useState } from "react";
 
-const Cart = ({ cart, products, setCart }) => {
+const Cart = ({ cart, products, setCart, resetCart }) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
@@ -71,6 +71,7 @@ const Cart = ({ cart, products, setCart }) => {
   return (
     <div>
       <h1>Shopping Cart</h1>
+
       {cart.map((item) => {
         const productItem = getCartItemDetails(item);
 

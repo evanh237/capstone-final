@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Checkout.css";
 
-const Checkout = () => {
+const Checkout = ({ resetCart }) => {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -14,6 +14,9 @@ const Checkout = () => {
     if (cartData && cartTotalData) {
       setCart(JSON.parse(cartData));
       setCartTotal(parseFloat(cartTotalData));
+    } else {
+      setCart([]);
+      setCartTotal(0);
     }
   }, []);
 
@@ -21,6 +24,7 @@ const Checkout = () => {
     setOrderSuccess(true);
     setCart([]);
     setCartTotal(0);
+    resetCart();
   };
 
   const [formData, setFormData] = useState({
@@ -105,7 +109,9 @@ const Checkout = () => {
           placeholder="Country"
           required
         />
-        <button onClick={handlePlaceOrder}>Place Order</button>
+        <button onClick={handlePlaceOrder} disabled={cart.length === 0}>
+          Place Order
+        </button>
         {orderSuccess ? <p>Your Order has been placed!</p> : null}
       </form>
     </div>
