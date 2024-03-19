@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./CartItemCard.css";
-const CartItemCard = ({ cartItem, quantity, onIncrement, onDecrement }) => {
+const CartItemCard = ({
+  cartItem,
+  quantity,
+  onIncrement,
+  onDecrement,
+  onDelete,
+}) => {
   const [customQuantity, setCustomQauntity] = useState(1);
 
   const handleCustomQuantityChange = (e) => {
@@ -18,6 +24,10 @@ const CartItemCard = ({ cartItem, quantity, onIncrement, onDecrement }) => {
 
   const handleAddToCart = () => {
     onIncrement(cartItem.id, customQuantity);
+  };
+
+  const handleDelete = () => {
+    onDelete(cartItem.id);
   };
 
   return (
@@ -46,6 +56,7 @@ const CartItemCard = ({ cartItem, quantity, onIncrement, onDecrement }) => {
           onChange={handleCustomQuantityChange}
         />
         <button onClick={handleAddToCart}>Add</button>
+        <button onClick={handleDelete}>Remove All</button>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const Cart = ({ cart, products, setCart }) => {
       0
     );
 
-    setCartTotal(total);
+    setCartTotal(total.toFixed(2));
   }, [cart, products]);
 
   const getCartItemDetails = (cartItem) =>
@@ -52,8 +52,20 @@ const Cart = ({ cart, products, setCart }) => {
     setCart(updatedCart);
   };
 
+  const handleDeleteItem = (productId) => {
+    const updatedCart = cart.filter((item) => item.productId !== productId);
+    setCart(updatedCart);
+  };
+
   const handleClearCart = () => {
     setCart([]);
+  };
+
+  const handleCheckout = () => {
+    const queryParams = new URLSearchParams();
+    queryParams.append("cart", JSON.stringify(cart));
+    queryParams.append("cartTotal", cartTotal);
+    window.location.href = `/checkout?${queryParams.toString()}`;
   };
 
   return (
@@ -69,11 +81,13 @@ const Cart = ({ cart, products, setCart }) => {
             quantity={item.quantity}
             onIncrement={handleIncrement}
             onDecrement={handleDecrement}
+            onDelete={handleDeleteItem}
           />
         );
       })}
       <div>Cart Total: ${cartTotal}</div>
       <button onClick={handleClearCart}>Clear Cart</button>
+      <button onClick={handleCheckout}>Proceed to Checkout</button>
     </div>
   );
 };

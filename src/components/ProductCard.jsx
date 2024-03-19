@@ -2,7 +2,7 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router";
 
 const ProductCard = ({ product, isSingle, cart, setCart }) => {
-  console.log("cart-->", cart);
+  //   console.log("cart-->", cart);
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/");

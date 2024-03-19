@@ -1,7 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Checkout.css";
 
 const Checkout = () => {
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const cartData = queryParams.get("cart");
+    const cartTotalData = queryParams.get("cartTotal");
+
+    if (cartData && cartTotalData) {
+      setCart(JSON.parse(cartData));
+      setCartTotal(parseFloat(cartTotalData));
+    }
+  }, []);
+
+  const handlePlaceOrder = () => {
+    setOrderSuccess(true);
+    setCart([]);
+    setCartTotal(0);
+  };
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,6 +47,7 @@ const Checkout = () => {
   return (
     <div className="checkout-page">
       <h2>Checkout</h2>
+      <div>Cart Total: ${cartTotal.toFixed(2)}</div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -83,7 +105,8 @@ const Checkout = () => {
           placeholder="Country"
           required
         />
-        <button type="submit">Place Order</button>
+        <button onClick={handlePlaceOrder}>Place Order</button>
+        {orderSuccess ? <p>Your Order has been placed!</p> : null}
       </form>
     </div>
   );

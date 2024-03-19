@@ -54,7 +54,12 @@ function App() {
         <Route
           path="/login"
           element={
-            <Login setToken={setToken} setUser={setUser} setCart={setCart} />
+            <Login
+              token={token}
+              setToken={setToken}
+              setUser={setUser}
+              setCart={setCart}
+            />
           }
         />
         <Route
@@ -67,7 +72,9 @@ function App() {
         />
         <Route
           path="/checkout"
-          element={<Checkout cart={cart} products={products} />}
+          element={
+            <Checkout cart={cart} setCart={setCart} products={products} />
+          }
         />
       </Routes>
     </div>
