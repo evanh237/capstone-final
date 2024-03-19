@@ -52,7 +52,12 @@ function App() {
         <Route
           path="/"
           element={
-            <AllProducts products={products} setCart={setCart} cart={cart} />
+            <AllProducts
+              products={products}
+              setProducts={setProducts}
+              setCart={setCart}
+              cart={cart}
+            />
           }
         />
         <Route

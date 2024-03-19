@@ -15,7 +15,6 @@ const NavBar = () => {
           <li>
             <Link to="/cart">Cart</Link>
           </li>
-          <li>{/* <Link to="/checkout">Check Out</Link> */}</li>
         </ul>
       </nav>
     </div>
