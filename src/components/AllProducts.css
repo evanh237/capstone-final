@@ -4,3 +4,24 @@
   gap: 20px;
   padding: 20px;
 }
+
+.category-selector {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.category-selector button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-selector button:hover {
+  background-color: #e0e0e0;
+}
