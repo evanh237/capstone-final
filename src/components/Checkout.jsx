@@ -109,7 +109,11 @@ const Checkout = ({ resetCart }) => {
           placeholder="Country"
           required
         />
-        <button onClick={handlePlaceOrder} disabled={cart.length === 0}>
+        <button
+          className="checkout-btn"
+          onClick={handlePlaceOrder}
+          disabled={cart.length === 0}
+        >
           Place Order
         </button>
         {orderSuccess ? <p>Your Order has been placed!</p> : null}

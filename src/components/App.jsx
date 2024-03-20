@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./App.css";
 import AllProducts from "./AllProducts";
@@ -18,6 +18,7 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user" || null))
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -41,13 +42,26 @@ function App() {
     fetchAllProducts();
   }, []);
 
+  const handleLogout = () => {
+    setToken(null);
+    setUser(null);
+    setCart(null);
+    navigate("/login");
+  };
+
   const resetCart = () => {
     setCart([]);
   };
 
   return (
     <div>
-      <NavBar token={token} setToken={setToken} cart={cart} setCart={setCart} />
+      <NavBar
+        token={token}
+        setToken={setToken}
+        cart={cart}
+        setCart={setCart}
+        onLogout={handleLogout}
+      />
       <Routes>
         <Route
           path="/"

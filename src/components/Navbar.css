@@ -1,38 +1,49 @@
 .links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   padding: 1px 10px;
+  padding-bottom: 5px;
   background-color: #222;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
-nav ul {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1.25rem;
-  font-weight: bold;
-  list-style: none;
-  display: flex;
-  margin: 5px;
-  padding: 5px;
-}
-
-nav ul li {
-  margin-right: 10px;
-}
-
-nav ul li a {
+.nav-link {
   text-decoration: none;
-  color: #fff;
-  transition: color 0.3s ease;
+  color: white;
+  margin-right: 10px;
+  font-weight: bolder;
 }
 
-nav ul li a:hover {
-  color: #bbb;
+.nav-link:hover {
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.login-logout {
+  margin-left: auto;
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.logout-btn:hover {
+  background-color: #444;
+  color: #007bff;
 }

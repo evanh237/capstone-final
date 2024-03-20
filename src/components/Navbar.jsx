@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-const NavBar = () => {
+const NavBar = ({ token, onLogout }) => {
   return (
     <div className="links">
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/cart">Cart</Link>
-          </li>
-        </ul>
+        <Link className="nav-link" to="/">
+          All Products
+        </Link>
+
+        <Link className="nav-link" to="/cart">
+          Cart
+        </Link>
       </nav>
+      <div className="login-logout">
+        {token ? (
+          <button onClick={onLogout} className="logout-btn">
+            Logout
+          </button>
+        ) : (
+          <Link className="nav-link" to="/login">
+            Login
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

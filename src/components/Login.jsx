@@ -32,26 +32,24 @@ const Login = ({ token, setToken, setUser, setCart }) => {
     navigate("/");
   };
 
-  const handleLogout = () => {
-    setToken(null);
-    setUser(null);
-    setCart(null);
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   setToken(null);
+  //   setUser(null);
+  //   setCart(null);
+  //   navigate("/login");
+  // };
 
-  if (token) {
-    return (
-      <div className="login-container">
-        <h1>You're Logged In!</h1>
-        <br />
-        <p>
-          <button className="logout-button" onClick={handleLogout}>
-            Log out
-          </button>
-        </p>
-      </div>
-    );
-  }
+  // if (token) {
+  //   return (
+  //     <div className="login-container">
+  //       <h1>You're Logged In!</h1>
+  //       <br />
+  //       <p>
+  //         <button className="logout-button">Log out</button>
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="login-container">
