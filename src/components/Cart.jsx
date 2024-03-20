@@ -1,7 +1,7 @@
 import CartItemCard from "./CartItemCard";
 import { useEffect, useState } from "react";
-
-const Cart = ({ cart, products, setCart, resetCart }) => {
+import "./Cart.css";
+const Cart = ({ cart, products, setCart, resetCart, token }) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Cart = ({ cart, products, setCart, resetCart }) => {
   }, [cart]);
 
   useEffect(() => {
-    const total = cart.reduce(
+    const total = cart?.reduce(
       (acc, item) => {
         const productItem = getCartItemDetails(item);
         return acc + (productItem ? productItem.price * item.quantity : 0);
@@ -18,7 +18,7 @@ const Cart = ({ cart, products, setCart, resetCart }) => {
       0
     );
 
-    setCartTotal(total.toFixed(2));
+    setCartTotal(total?.toFixed(2));
   }, [cart, products]);
 
   const getCartItemDetails = (cartItem) =>
@@ -72,23 +72,39 @@ const Cart = ({ cart, products, setCart, resetCart }) => {
     <div>
       <h1>Shopping Cart</h1>
 
-      {cart.map((item) => {
-        const productItem = getCartItemDetails(item);
+      {!token ? (
+        <h4>Please log in to view your cart!</h4>
+      ) : cart.length === 0 ? (
+        <h4>Your Cart is Empty!</h4>
+      ) : (
+        <div>
+          {cart.map((item) => {
+            const productItem = getCartItemDetails(item);
 
-        return (
-          <CartItemCard
-            key={productItem?.id}
-            cartItem={productItem}
-            quantity={item.quantity}
-            onIncrement={handleIncrement}
-            onDecrement={handleDecrement}
-            onDelete={handleDeleteItem}
-          />
-        );
-      })}
-      <div>Cart Total: ${cartTotal}</div>
-      <button onClick={handleClearCart}>Clear Cart</button>
-      <button onClick={handleCheckout}>Proceed to Checkout</button>
+            return (
+              <CartItemCard
+                key={productItem?.id}
+                cartItem={productItem}
+                quantity={item.quantity}
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
+                onDelete={handleDeleteItem}
+              />
+            );
+          })}
+          <div>Cart Total: ${cartTotal}</div>
+          <button className="cart-btn" onClick={handleClearCart}>
+            Clear Cart
+          </button>
+          <button
+            className="cart-btn"
+            onClick={handleCheckout}
+            disabled={cart.length === 0}
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      )}
     </div>
   );
 };

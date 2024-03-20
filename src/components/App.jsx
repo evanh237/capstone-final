@@ -80,6 +80,7 @@ function App() {
           element={
             <Cart
               cart={cart}
+              token={token}
               products={products}
               setCart={setCart}
               resetCart={resetCart}

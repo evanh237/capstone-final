@@ -1,8 +1,9 @@
 import "./ProductCard.css";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const ProductCard = ({ product, isSingle, cart, setCart }) => {
-  //   console.log("cart-->", cart);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/");
@@ -25,6 +26,10 @@ const ProductCard = ({ product, isSingle, cart, setCart }) => {
       const newItem = { productId, quantity: 1 };
       setCart((prevCart) => [...prevCart, newItem]);
     }
+    setFeedbackMessage("Added to cart!");
+    setTimeout(() => {
+      setFeedbackMessage("");
+    }, 3000);
   };
 
   return (
@@ -41,6 +46,9 @@ const ProductCard = ({ product, isSingle, cart, setCart }) => {
           Number of Reviews {product.rating.count}
         </p>
         <p className="category">Category: {product.category}</p>
+        {feedbackMessage && (
+          <p className="feedback-message">{feedbackMessage}</p>
+        )}
       </div>
       {isSingle ? (
         <button className="go-back" onClick={handleGoBack}>
