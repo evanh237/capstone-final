@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./App.css";
 import AllProducts from "./AllProducts";
-import { getAllProducts, getSingleProduct } from "../api";
+import { getAllProducts, getSingleProduct, getSingleUser } from "../api";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
 import NavBar from "./Navbar";
@@ -19,6 +19,9 @@ function App() {
     JSON.parse(localStorage.getItem("user" || null))
   );
   const navigate = useNavigate();
+
+  // getSingleUser();
+  // console.log("get single user-->", getSingleUser(2));
 
   useEffect(() => {
     if (token) {
@@ -71,6 +74,7 @@ function App() {
               setProducts={setProducts}
               setCart={setCart}
               cart={cart}
+              token={token}
             />
           }
         />

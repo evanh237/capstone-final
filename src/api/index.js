@@ -67,3 +67,14 @@ export const getUserCart = async (id) => {
     console.error("Error /GET user cart");
   }
 };
+
+export const getSingleUser = async (id) => {
+  try {
+    const response = await fetch(`${BASEURL}/users/${id}`);
+    const result = await response.json();
+    // console.log("result-->", result);
+    return result;
+  } catch (error) {
+    console.error("Error /GET that user!");
+  }
+};

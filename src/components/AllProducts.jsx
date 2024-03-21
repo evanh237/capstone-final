@@ -3,7 +3,7 @@ import { getAllProducts } from "../api";
 import ProductCard from "./ProductCard";
 import "./AllProducts.css";
 
-const AllProducts = ({ products, setProducts, cart, setCart }) => {
+const AllProducts = ({ products, setProducts, cart, setCart, token }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
@@ -48,6 +48,7 @@ const AllProducts = ({ products, setProducts, cart, setCart }) => {
               product={product}
               cart={cart}
               setCart={setCart}
+              token={token}
             />
           );
         })}

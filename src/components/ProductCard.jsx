@@ -2,7 +2,7 @@ import "./ProductCard.css";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
-const ProductCard = ({ product, isSingle, cart, setCart }) => {
+const ProductCard = ({ product, isSingle, cart, setCart, token }) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const navigate = useNavigate();
   const handleGoBack = () => {
@@ -59,10 +59,11 @@ const ProductCard = ({ product, isSingle, cart, setCart }) => {
           See Details
         </button>
       )}
-
-      <button onClick={handleAddToCart} className="cart-button">
-        Add to Cart
-      </button>
+      {token && (
+        <button onClick={handleAddToCart} className="cart-button">
+          Add to Cart
+        </button>
+      )}
     </div>
   );
 };
