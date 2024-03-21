@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./App.css";
 import AllProducts from "./AllProducts";
-import { getAllProducts } from "../api";
+import { getAllProducts, getSingleUser } from "../api";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
 import NavBar from "./Navbar";
@@ -80,6 +80,7 @@ function App() {
         cart={cart}
         setCart={setCart}
         onLogout={handleLogout}
+        user={user}
       />
       <Routes>
         <Route

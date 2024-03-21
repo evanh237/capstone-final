@@ -12,6 +12,7 @@ const NavBar = ({ token, onLogout }) => {
         <Link className="nav-link" to="/cart">
           Cart
         </Link>
+        <div className="user-greeting"></div>
       </nav>
       <div className="login-logout">
         {token ? (
