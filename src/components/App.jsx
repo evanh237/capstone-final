@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./App.css";
 import AllProducts from "./AllProducts";
-import { getAllProducts, getSingleProduct, getSingleUser } from "../api";
+import { getAllProducts } from "../api";
 import SingleProduct from "./SingleProduct";
 import Cart from "./Cart";
 import NavBar from "./Navbar";
@@ -12,13 +12,29 @@ import Checkout from "./Checkout";
 function App() {
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token" || null));
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart" || []))
-  );
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user" || null))
-  );
+  const [cart, setCart] = useState([]);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      const cartData = localStorage.getItem("cart");
+      if (cartData) {
+        const parsedCart = JSON.parse(cartData);
+        setCart(parsedCart);
+      } else {
+        setCart([]);
+      }
+    } catch (error) {
+      console.error("error parsing cart data:", error);
+      setCart([]);
+    }
+
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   // getSingleUser();
   // console.log("get single user-->", getSingleUser(2));
@@ -91,7 +107,9 @@ function App() {
         />
         <Route
           path="/:productId"
-          element={<SingleProduct setCart={setCart} cart={cart} />}
+          element={
+            <SingleProduct setCart={setCart} cart={cart} token={token} />
+          }
         />
         <Route
           path="/cart"

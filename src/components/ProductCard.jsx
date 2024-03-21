@@ -50,6 +50,12 @@ const ProductCard = ({ product, isSingle, cart, setCart, token }) => {
           <p className="feedback-message">{feedbackMessage}</p>
         )}
       </div>
+
+      {isSingle && token && (
+        <button onClick={handleAddToCart} className="cart-button">
+          Add to Cart
+        </button>
+      )}
       {isSingle ? (
         <button className="go-back" onClick={handleGoBack}>
           Go Back
@@ -59,7 +65,7 @@ const ProductCard = ({ product, isSingle, cart, setCart, token }) => {
           See Details
         </button>
       )}
-      {token && (
+      {!isSingle && token && (
         <button onClick={handleAddToCart} className="cart-button">
           Add to Cart
         </button>

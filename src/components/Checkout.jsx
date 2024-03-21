@@ -17,6 +17,7 @@ const Checkout = ({ resetCart }) => {
     } else {
       setCart([]);
       setCartTotal(0);
+      localStorage.removeItem("cartTotal");
     }
   }, []);
 
@@ -24,6 +25,7 @@ const Checkout = ({ resetCart }) => {
     setOrderSuccess(true);
     setCart([]);
     setCartTotal(0);
+    localStorage.removeItem("cartTotal");
     resetCart();
   };
 

@@ -3,7 +3,7 @@ import { getSingleProduct } from "../api";
 import { useParams } from "react-router";
 import ProductCard from "./ProductCard";
 
-const singleProduct = ({ cart, setCart }) => {
+const singleProduct = ({ cart, setCart, token }) => {
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
 
@@ -16,7 +16,13 @@ const singleProduct = ({ cart, setCart }) => {
   }, [productId]);
   return (
     product && (
-      <ProductCard product={product} isSingle cart={cart} setCart={setCart} />
+      <ProductCard
+        product={product}
+        isSingle
+        cart={cart}
+        setCart={setCart}
+        token={token}
+      />
     )
   );
 };
