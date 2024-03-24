@@ -1,8 +1,16 @@
-# React + Vite
+This is a mockup e-commerce site using fakestoreAPI. Some of the features built-in are: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Browse products from FakeStoreAPI.
+Distinguish between registered users and those are aren't signed in. 
+View product details including name, price, description, and image.
+Add items to cart.
+Simulate a checkout process (no actual transactions are processed).
+Responsive design for mobile and desktop.
 
-Currently, two official plugins are available:
+Link to demo site: https://eh-capstone.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technology used:
+React
+FakeStoreAPI
+React Router
+CSS for styling 
